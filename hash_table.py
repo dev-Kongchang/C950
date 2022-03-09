@@ -6,8 +6,9 @@
 
 class hashtable:
     def __init__(self):
-        self.size = 6 # since we know that the size of the 
+        self.size = 10 # we are going to make a empty list entires 
         self.map = [None] * self.size
+        
 
     def get_hash(self, key):
         hash = 0
@@ -19,10 +20,11 @@ class hashtable:
         key_hash = self.get_hash(key)
         key_value = [key, value]
 
+        # we check to see if the item is there, if it isn't then we add it
         if self.map[key_hash] is None: 
             self.map[key_hash] = list([key_value])
         else:
-            for pair in self.map[key_hash]: # we would check the pair to update if 
+            for pair in self.map[key_hash]: # update the keyt if it already exist 
                 if pair[0] == key:
                     pair[1] = value
             self.map[key_hash].append(key_value)
@@ -30,20 +32,20 @@ class hashtable:
     def get(self, key):
         key_hash = self.get_hash(key)
         if self.map[key_hash] is not None:
-            for pair in self.map[key_hash]:
+            # we go through to see if the item is in there
+            for pair in self.map[key_hash]: 
                 if pair[0] == key:
                     return pair[1]
         return None # in case the key does not exist
     
     def delete(self, key):
         key_hash = self.get_hash(key)
+        bucket = self.map[key_hash]
 
-        if self.map[key_hash] is None:
-            return False
+        # we check to see if item already exist
         for what in range(0, len(self.map[key_hash])):
             if self.map[key_hash][what][0] == key:
                 self.map[key_hash].pop(what)
-                return True
 
     def print(self):
         for item in self.map:
@@ -56,13 +58,14 @@ h = hashtable()
 
 h.add('Bob', '53338392')
 j = ['5596918444', 'Kongs Number', 88490944]
-h.add('Kong', j)
+h.add('Kong', 'apple')
 h.add('three', '53338392')
-h.add('Lee', '53338392')
+h.add('Lee', '53338992')
 
 h.print()
-h.delete('Bob')
 print(' ========== \n')
+h.delete('Bob')
+h.delete('three')
 h.print()
 
 print('Test: ' + h.get('Kong'))
