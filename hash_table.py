@@ -1,6 +1,6 @@
 #Name: Kong Chang
 #Student ID: 010127362
-# C950 - Data Structures and Algorithms
+# C950 - Data Structures and Algorithms II
 
 # below is the class of hash table
 
@@ -9,8 +9,8 @@ class hashtable:
         self.size = 10 # we are going to make a empty list entires 
         self.map = [None] * self.size
         
-
-    def get_hash(self, key):
+    # Make a function that hash the key for us
+    def get_hash(self, key): 
         hash = 0
         for char in str(key):
             hash += ord(char)
@@ -45,9 +45,10 @@ class hashtable:
         # we check to see if item already exist
         for what in range(0, len(self.map[key_hash])):
             if self.map[key_hash][what][0] == key:
-                self.map[key_hash].pop(what)
+                self.map[key_hash].pop(what) # delete the item when found
 
     def print(self):
+        # simply iterate through and print all keys and items
         for item in self.map:
             if item is not None:
                 print(str(item))
