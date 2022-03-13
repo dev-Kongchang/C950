@@ -54,19 +54,3 @@ class hashtable:
                 print(str(item))
 
 
-
-h = hashtable()
-
-h.add('Bob', '53338392')
-j = ['5596918444', 'Kongs Number', 88490944]
-h.add('Kong', 'apple')
-h.add('three', '53338392')
-h.add('Lee', '53338992')
-
-h.print()
-print(' ========== \n')
-h.delete('Bob')
-h.delete('three')
-h.print()
-
-print('Test: ' + h.get('Kong'))

@@ -5,3 +5,5 @@ from package import package
 
 class truck:
     def __init__(self):
+        self.max_capicity = 16
+        
