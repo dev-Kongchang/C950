@@ -5,5 +5,12 @@ from package import package
 
 class truck:
     def __init__(self):
-        self.max_capicity = 16
+        self.max_capacity = 16
+        self.capacity = 0
+        self.cargo = []
         
+    def add(self, package as package):
+        if self.capacity ==- self.max_capacity
+        self.cargo.append(package)
+        self.capacity += 1
+

@@ -21,6 +21,4 @@ with open(file_name) as data:
         distanceData.append(info)
 
 
-for x in distanceData:
-    print(x)
 
