@@ -8,9 +8,12 @@ class truck:
         self.max_capacity = 16
         self.capacity = 0
         self.cargo = []
+        self.max_speed = 18
         
     def add(self, package as package):
-        if self.capacity ==- self.max_capacity
+        if self.capacity == self.max_capacity:
+            
+        
         self.cargo.append(package)
         self.capacity += 1
 

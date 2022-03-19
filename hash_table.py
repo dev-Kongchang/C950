@@ -6,7 +6,7 @@
 
 class hashtable:
     def __init__(self):
-        self.size = 10 # we are going to make a empty list entires 
+        self.size = 28 # we are going to make a empty list entires 
         self.map = [None] * self.size
         
     # Make a function that hash the key for us
@@ -36,7 +36,8 @@ class hashtable:
             for pair in self.map[key_hash]: 
                 if pair[0] == key:
                     return pair[1]
-        return None # in case the key does not exist
+        print('key Does not Exist')
+        return None # in case the key does not exist\
     
     def delete(self, key):
         key_hash = self.get_hash(key)

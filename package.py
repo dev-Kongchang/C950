@@ -15,7 +15,7 @@ class package:
         self.delivered_time = ''
     
     # function to add on all neccessary information 
-    def add(self,id, address, deadline, city, zip, weight, status):
+    def add(self,id, address, city, state, zip, deadline, weight, notes, status):
         self.id = id
         self.deliver_address = address
         self.deliver_deadline = deadline
