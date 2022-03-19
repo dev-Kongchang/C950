@@ -10,7 +10,6 @@ distanceData = []
 # Summary: Make a 2D array (Adjacency Matrix)
 #          This will allow for a quick check for calculating distance between different places
 
-
 # open the distance csv and attirbute variable to it
 with open(file_name) as data:
 
