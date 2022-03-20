@@ -5,7 +5,7 @@
 from audioop import add
 import csv
 from traceback import print_tb
-from truck import truck
+from truck import Truck
 
 file_name = 'WGUPS Distance Table.csv'
 # make a global list so we can use later after uploading all the data from the csv
@@ -48,7 +48,7 @@ def calculate_distance_between(address1, address2):
 
 def minDistanceFrom(address1, truck):
     # making variable placeholder so we don't modify the original and prevent bugs
-    truck_dummy = truck()
+    truck_dummy = Truck()
     truck_dummy = truck
     cargo = truck_dummy.get_cargo()
     # making variable to start the first package to start comparing later on

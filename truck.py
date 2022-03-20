@@ -2,14 +2,15 @@
 #Student ID: 010127362
 # C950 - Data Structures and Algorithms II
 
-from package import package
+from package import Package
 
-class truck:
+class Truck:
     def __init__(self):
         self.max_capacity = 16
         self.capacity = 0
         self.cargo = []
         self.max_speed = 18
+        self.driver = False
         
 
     def add(self, package):
@@ -37,7 +38,7 @@ class truck:
     
     def get_current_package_address(self, index):
         # make variable placeholder to get address
-        cargo = package()
+        cargo = Package()
         cargo = self.cargo[index]
         if cargo.get_delivery_city() == '':
             print('delivery address is empty for package id: ' + str(cargo.get_id()))

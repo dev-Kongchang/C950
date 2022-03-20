@@ -2,7 +2,7 @@
 #Student ID: 010127362
 # C950 - Data Structures and Algorithms II
 
-class package:
+class Package:
     # we first set the constructors so that package class may have all the necessary compoments
     def __init__(self):
         self.id = 0
