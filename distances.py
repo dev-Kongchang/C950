@@ -2,9 +2,8 @@
 # Student ID: 010127362
 # C950 - Data Structures and Algorithms II
 
-from audioop import add
 import csv
-from traceback import print_tb
+from package import Package
 from truck import Truck
 
 file_name = 'WGUPS Distance Table.csv'
@@ -42,7 +41,12 @@ def calculate_distance_between(address1, address2):
 
     # Time complexity is O(N)
     col = addressDictionary.get(address1)
-    row = addressDictionary.get(address2)
+    print(type(address2))
+    # just in case we have to check for package object given or string
+    if type(address2) == Package:
+        row = addressDictionary.get(address2.get_deliver_address())
+    else:
+        row = addressDictionary.get(address2)
     return distanceData[col][row]
 
 
@@ -50,18 +54,18 @@ def minDistanceFrom(address1, truck):
     # making variable placeholder so we don't modify the original and prevent bugs
     truck_dummy = Truck()
     truck_dummy = truck
-    cargo = truck_dummy.get_cargo()
+    cargo = truck_dummy.cargo
     # making variable to start the first package to start comparing later on
-    min_distance = truck_dummy.get_first_cargo_distance()
+    min_distance = 100
     # variable to hold the minimun distance address so we can return it at the end
     min_address = ''
 
     # Time Complexity is O(N) since we are calling calcuate_distance_between function which is only O(1)
     for x in cargo:
-        distance = calculate_distance_between(address1, x)
+        distance = float(calculate_distance_between(address1, x))
         if distance < min_distance:
             min_distance = distance
-            min_address = x
+            min_address = x.get_deliver_address()
 
     return min_address
 
