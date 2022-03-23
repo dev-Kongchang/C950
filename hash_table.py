@@ -68,4 +68,5 @@ class hashtable:
                 if pair[0] == key:
                     # update the item with the desired value
                     pair[1] = value
+                    break
 

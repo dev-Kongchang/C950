@@ -3,6 +3,7 @@
 # C950 - Data Structures and Algorithms II
 
 from package import Package
+import datetime
 
 class Truck:
     def __init__(self):
@@ -11,8 +12,10 @@ class Truck:
         self.cargo = []
         self.max_speed = 18
         self.driver = False
-        self.miles = 0
+        self.miles = 0.0
         self.packages_delivered = 0
+        self.packages_delivered_queue = []
+        self.current_time = datetime.timedelta()
         
     # Time Complexity = O(1)
     def add(self, package):
@@ -25,16 +28,40 @@ class Truck:
         return True
 
     # Time Complexity = O(1)
+    def update_current_time(self, newTime):
+        self.current_time = newTime
+
+    # Time Complexity = O(1)
+    def get_current_time(self):
+        return self.current_time
+
+    # Time Complexity = O(1)
+    def add_to_queue(self, package_id):
+        self.packages_delivered_queue.append(package_id)
+
+    # This function returns the last package object that was delivered
+    # Time Complexity = O(N)
+    def get_last_delivered_package(self):
+        id = self.packages_delivered_queue[len(self.packages_delivered_queue) - 1]
+        # look for the package infomation
+        for x in self.cargo:
+            if x.get_id() == id:
+                return x
+                
+
+    # Time Complexity = O(N)
     # this returns a Package Object 
-    def get_cargo(self, index):
+    def get_cargo(self, id):
         what = Package()
         if self.cargo == []:
             print('cargo is empty, please add some packages')
             return False
         else:
-            what = self.cargo[index]
-            
-            return what
+            for x in self.cargo:
+                what = x
+                if int(what.get_id()) == id:
+                    return what
+                    
     
     # Time Complexity = O(1)
     def get_first_cargo_distance(self):

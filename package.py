@@ -1,6 +1,7 @@
 #Name: Kong Chang
 #Student ID: 010127362
 # C950 - Data Structures and Algorithms II
+import datetime
 
 class Package:
     # we first set the constructors so that package class may have all the necessary compoments
@@ -12,7 +13,7 @@ class Package:
         self.deliver_zip = 0
         self.weight = 0
         self.deliver_status = ''
-        self.delivered_time = ''
+        self.delivered_time = datetime.timedelta()
     
     # function to add on all neccessary information 
     def add(self,id, address, city, state, zip, deadline, weight, notes, status):
@@ -26,7 +27,13 @@ class Package:
     
     # This is so that when we get the new address for the special package we can update it
     def update_address(self, new_address):
-        deliver_address = new_address
+        self.deliver_address = new_address
+    
+    def update_city(self, newCity):
+        self.deliver_city = newCity
+
+    def update_zip(self, newZip):
+        self.deliver_zip = newZip
 
     # Since we have to update package delivery times
     def update_delivered_time(self, new_time):
@@ -40,7 +47,7 @@ class Package:
     # check to see if they are updated and if not then notifys user
     # if updated correctly, then will return the desire value 
     def get_id(self):
-        if self.id == '':
+        if self.id == 0:
             print('ID is Null for package: ')
         else:
             return self.id
@@ -76,7 +83,7 @@ class Package:
            return self.weight
 
     def get_status(self):
-        if self.status == '':
+        if self.deliver_status == '':
             print('Status was never inputted for package ID: ' + str(self.id))
         else:
            return self.deliver_status

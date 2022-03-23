@@ -41,7 +41,6 @@ def calculate_distance_between(address1, address2):
 
     # Time complexity is O(N)
     col = addressDictionary.get(address1)
-    print(type(address2))
     # just in case we have to check for package object given or string
     if type(address2) == Package:
         row = addressDictionary.get(address2.get_deliver_address())
@@ -50,24 +49,24 @@ def calculate_distance_between(address1, address2):
     return distanceData[col][row]
 
 
-def minDistanceFrom(address1, truck):
+def minDistanceFrom(address1, truck, need_package):
     # making variable placeholder so we don't modify the original and prevent bugs
-    truck_dummy = Truck()
     truck_dummy = truck
     cargo = truck_dummy.cargo
     # making variable to start the first package to start comparing later on
     min_distance = 100
     # variable to hold the minimun distance address so we can return it at the end
-    min_address = ''
-
+    
     # Time Complexity is O(N) since we are calling calcuate_distance_between function which is only O(1)
     for x in cargo:
-        distance = float(calculate_distance_between(address1, x))
-        if distance < min_distance:
-            min_distance = distance
-            min_address = x.get_deliver_address()
+        # we need to check if the package within the truck is delivered
+        if x.get_status() != 'delivered':
+            distance = float(calculate_distance_between(address1, x))
+            if distance < min_distance:
+                min_distance = distance
+                if need_package == False:
+                    min_address = x.get_deliver_address()
+                else: 
+                    min_address = x
 
     return min_address
-
-
-#print(calculate_distance_between('2835 Main St', '3060 Lester St'))
