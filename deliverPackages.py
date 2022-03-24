@@ -145,6 +145,14 @@ for x in truck3.cargo:
 
 deliver(truck3, truck3_time)
 
+hub = '4001 South 700 East'
+what = Package()
+what = truck3.get_last_delivered_package()
+miles = float(distances.calculate_distance_between(what.get_deliver_address(), hub))
+truck3.update_miles(miles)
+newTime = truck3.get_current_time() + update_time(miles, 18, truck3_time)
+truck3.update_current_time(newTime)
+
 # =================================================================
 # 4.) Start the truck 2 delivery process
 # Update package statuses and package #9's delivery address
@@ -162,3 +170,10 @@ for x in truck2.cargo:
         packageData.update(x.get_id(), x)
 
 deliver(truck2, truck2_time)
+hub = '4001 South 700 East'
+what = Package()
+what = truck2.get_last_delivered_package()
+miles = float(distances.calculate_distance_between(what.get_deliver_address(), hub))
+truck2.update_miles(miles)
+newTime = truck2.get_current_time() + update_time(miles, 18, truck2_time)
+truck2.update_current_time(newTime)
