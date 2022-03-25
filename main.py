@@ -2,14 +2,13 @@
 # Student ID: 010127362
 # C950 - Data Structures and Algorithms II
 
-from pip import main
 import deliverPackages
 from time import sleep
 from package import Package
 import display
 
 class Main:
-    print('     Hello! Welcome to the C950 - Data Structures and Algorithms \n')
+    print('     Hello! Welcome to the C950 - Data Structures and Algorithms II \n')
     print('     Performance Assessment - WGUPS Program\n')
 
     userinput = input(' What do you want to do?: \n' + '1 - Start Program excution?\n' + '2 - Quit?\n \n')
@@ -18,10 +17,10 @@ class Main:
         what = int(userinput) 
     except ValueError:
         print(' You did not enter a valid option....\n')
-        main()
-    if what != 1 or what!= 2 : 
+        
+    if what != 1 and what!= 2 : 
         print(' Please choose a valid option... \n')
-        main()
+       
     else:
         userinput = what
 
@@ -52,7 +51,7 @@ class Main:
         orderlist = deliverPackages.truck3.cargo
         print('\n')
         print(' Truck 3 Package Loading:')
-        # Time Complexity = O(N)
+        # Time Complexity = O(N) 
         for x in range(0, len(orderlist)):
             what = orderlist[x]
             print(' Package #' + str(what.get_id()) + ' is loaded into Truck 3')
@@ -100,7 +99,7 @@ class Main:
         userinput = display.menu()
 
         while userinput != 10:
-            if userinput == 5: exit(1)
+            if userinput == 2: exit(1)
             if userinput == 1: display.check_package()
 
             userinput = display.check_package()

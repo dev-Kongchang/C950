@@ -2,9 +2,7 @@
 # Student ID: 010127362
 # C950 - Data Structures and Algorithms II
 
-from imghdr import what
-import string
-from tkinter import Pack
+from os import stat
 from package import Package
 from truck import Truck
 from deliverPackages import truck1, truck2, truck3
@@ -12,6 +10,8 @@ from time import sleep
 import datetime
 import hash_table
 from csv_reader import packageData
+import colorama
+from colorama import Fore
 
 # keep a global variable so we can update package #9 once
 updated = False
@@ -27,12 +27,15 @@ supertime = ''
 # so we don't see jinky code all over
 # Time complexity = O(1)
 def print_delivered(package):
-    print('\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + str(package.get_status()) + ' | delivered at: ' + str(package.get_delivered_time()) + '\n')
+    print(Fore.GREEN + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + str(package.get_status()) + ' | delivered at: ' + str(package.get_delivered_time()) + '\n')
 
 # so we don't see jinky code all over
 # Time complexity = O(1)
 def print_not_delivered(package, status):
-    print('\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + status + '\n')
+    if status == 'en route':
+        print(Fore.LIGHTYELLOW_EX + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + status + '\n')
+    if status == 'at the hub':
+        print(Fore.RED + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + status + '\n')
 
 # this function will display all the truck's delivery
 # Time Complexity = O(N)
@@ -152,7 +155,7 @@ def get_package_status_helper(userinput_time, package, start_time):
 # Time Complexity = O(1)
 def menu():
     print(' What do you want to view next?\n')
-    userinput = input(' 1.) Check a Package?\n 2.) Check Package Statuses between 8:35 am to 9:25 am? \n 3.) Check Package Statuses between 9:35 am to 10:25 am? \n 4.) Check Package Statuses between 12:03 pm to 1:12 pm?\n 5.) Quit? \n\n')
+    userinput = input(' 1.) Check a Package?\n 2.) Quit? \n\n')
     # error-checking for user input
     convert = 0
     try:
@@ -317,10 +320,9 @@ def view_package_deadline(time):
             convertTime = userinput
         except ValueError:
             print('\n You did not enter an time, Please try again...')
+            view_package_deadline(time)
 
         # always using placeholder, so we don't modify the original
-        what = hash_table.hashtable()
-        what = packageData
         package = Package() 
         found = False
         # Time Complexity = O(N)
@@ -328,21 +330,22 @@ def view_package_deadline(time):
             # Time Complexity = O(N)
             package = packageData.get(x)
             # get the time and convert it back to string and only get the hours and minutes
-            package_time = str(package.get_delivered_time())
-            (h, m, s) = package_time.split(':')
-            package_time = datetime.timedelta(hours=int(h), minutes=int(m))
-            
-            # compare, if found, then print
-            if package_time == convertTime:
-                found = True
-                status = get_package_status(time, int(package.get_id()), True)
-                if status == 'delivered':
-                    print_delivered(package)
-                else:
-                    print_not_delivered(package, status)
+            package_time = str(package.get_deadline())
+            if package_time != 'EOD':
+                (h, m, s) = package_time.split(':')
+                package_time = datetime.timedelta(hours=int(h), minutes=int(m))
+
+                # compare, if found, then print
+                if package_time == convertTime:
+                    found = True
+                    status = get_package_status(time, int(package.get_id()), True)
+                    if status == 'delivered':
+                        print_delivered(package)
+                    else:
+                        print_not_delivered(package, status)
 
         if found == False:
-            print('\n No Package found at the time you inputted')
+            print('\n No Package deadline found at the time you inputted')
 
     if input == 'EOD':
         # always using placeholder, so we don't modify the original
@@ -446,7 +449,7 @@ def view_package_weight(time):
     for x in range(1, 41):
         # Time Complexity = O(N)
         package = packageData.get(x)
-        if package.get_weight() == userinput:
+        if int(package.get_weight()) == userinput:
             found = True
             # Time Complexity = O(N)
             status = get_package_status(time, int(package.get_id()), True)
@@ -469,9 +472,9 @@ def view_package_status(time):
     print(' 3.) at the hub')
     userinput = input(' Please choose a status: ')
     
-    if userinput != '1' or userinput != '2' or userinput != '3':
+    if userinput != '1' and userinput != '2' and userinput != '3':
         print(' You did not choose a valid option....')
-        quit()
+        view_package_status(time)
     
     # always using placeholder, so we don't modify the original
     what = hash_table.hashtable()
@@ -483,10 +486,16 @@ def view_package_status(time):
         package = packageData.get(x)
         status = get_package_status(time, int(package.get_id()), True)
 
-        if status == 'delivered':
-            print_delivered(package)
-        else:
-            print_not_delivered(package, status)
+        if int(userinput) == 1:
+
+            if status == 'delivered':
+                print_delivered(package)
+        if int(userinput) == 2:
+            if status == 'en route':
+                print_not_delivered(package, status)
+        if int(userinput) == 3:
+            if status == 'at the hub':
+                print_not_delivered(package, status)
     
     package_menu(time)
 
