@@ -6,7 +6,8 @@ import csv
 from hash_table import hashtable
 from package import Package
 
-# Make a hash table and read in the informaion into the a list and use the id as the key
+# Make a hash table and we are going to use the package id as the key and the package object as the item 
+# when storing into the hash table
 file_name = 'WGUPS Package File.csv'
 packageData = hashtable()
 
@@ -27,6 +28,7 @@ with open(file_name) as data:
         weight = row[6]
         notes = row[7]
 
+        # time complexity = O(N)
         info.add(id, delivery_address, city, state, zip, delivery_deadline, weight, notes, 'at the hub')
 
         # we add the id as the key and the package object as the item for the hash table
