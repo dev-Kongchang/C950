@@ -24,12 +24,12 @@ truck2_time = '10:20:00'
 # global variable holder
 supertime = ''
 
-# so we don't see jinky code all over
+# so we don't see jinky code all over, it's gonna get reused ALOT!!!
 # Time complexity = O(1)
 def print_delivered(package):
     print(Fore.LIGHTGREEN_EX + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + str(package.get_status()) + ' | delivered at: ' + str(package.get_delivered_time()) + '\n')
 
-# so we don't see jinky code all over
+# so we don't see jinky code all over, it's gonna get reused ALOT!!!
 # Time complexity = O(1)
 def print_not_delivered(package, status):
     if status == 'en route':
@@ -38,7 +38,7 @@ def print_not_delivered(package, status):
         print(Fore.RED + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + status + '\n')
 
 # this function will display all the truck's delivery
-# Time Complexity = O(N)
+# Time Complexity = O(N)^2
 def display_delivery(giventruck, num):
     truck = Truck
     truck = giventruck
@@ -47,6 +47,7 @@ def display_delivery(giventruck, num):
     
     # Time Complexity = O(N)
     for x in queue:
+        # Time complexity = O(N)
         what = truck.get_cargo(int(x))
         global updated
         update = updated
@@ -69,6 +70,7 @@ def get_package_status(userinput_time, id, need_status):
         what = truck1.cargo[x]
         if int(what.get_id()) == id:
             global truck1_time
+            # Time complexity = O(1)
             status = get_package_status_helper(userinput_time, what, truck1_time)
             if need_status == True:
                 return status
@@ -88,6 +90,7 @@ def get_package_status(userinput_time, id, need_status):
             what = truck2.cargo[x]
             if int(what.get_id()) == id:
                 global truck2_time
+                # Time complexity = O(1)
                 status = get_package_status_helper(userinput_time, what, truck2_time)
                 if need_status == True:
                     return status
@@ -107,6 +110,7 @@ def get_package_status(userinput_time, id, need_status):
         what = truck3.cargo[x]
         if int(what.get_id()) == id:
             global truck3_time
+            # Time complexity = O(1)
             status = get_package_status_helper(userinput_time, what, truck3_time)
             if need_status == True:
                 return status

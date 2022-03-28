@@ -92,10 +92,12 @@ class Main:
         print(' Truck 3 Total Miles: ' + str(deliverPackages.truck3.get_miles()))
         sleep(.01)
 
+        # we add up all the miles for all the truck
+        # Time Complexity = O(1)
         total = float(deliverPackages.truck1.get_miles()) + float(deliverPackages.truck2.get_miles()) + float(deliverPackages.truck3.get_miles())
         print(' Total Miles for the whole system is: ' + str(total)+ '\n')
-        # 
 
+        # ========= Start of package menu =================
         userinput = display.menu()
 
         while userinput != 10:

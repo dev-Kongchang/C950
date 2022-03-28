@@ -5,6 +5,7 @@
 # below is the class of hash table
 
 class hashtable:
+    # constructors
     def __init__(self):
         self.size = 10 # we are going to make a empty list entires 
         self.map = [None] * self.size
@@ -44,7 +45,6 @@ class hashtable:
     # Time complexity is O(N)
     def delete(self, key):
         key_hash = self.get_hash(key)
-        bucket = self.map[key_hash]
 
         # we check to see if item already exist
         for what in range(0, len(self.map[key_hash])):
@@ -70,3 +70,8 @@ class hashtable:
                     pair[1] = value
                     break
 
+# CITATION
+# author: Joe James
+# Source: Youtube
+# Title Video: Python: Creating a HASHMAP using Lists
+# Date Accessed: 3/20/2022

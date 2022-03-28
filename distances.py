@@ -36,6 +36,7 @@ for x in range(0, 28):
 
 # this function quickly utilizes the dictionary and gives us the distance 
 # by using the 2D array position
+# Time Complexity = O(1)
 def calculate_distance_between(address1, address2):
     # since we have the dictionary for the address, we can simply pull them up quickly rather than loop through the 2D array
 
@@ -49,10 +50,12 @@ def calculate_distance_between(address1, address2):
     return distanceData[col][row]
 
 
+# Time Complexity = O(N)
 def minDistanceFrom(address1, truck, need_package):
     # making variable placeholder so we don't modify the original and prevent bugs
     truck_dummy = truck
     cargo = truck_dummy.cargo
+
     # making variable to start the first package to start comparing later on
     min_distance = 100
     # variable to hold the minimun distance address so we can return it at the end
@@ -61,12 +64,16 @@ def minDistanceFrom(address1, truck, need_package):
     for x in cargo:
         # we need to check if the package within the truck is delivered
         if x.get_status() != 'delivered':
+            # Time Complexity = O(1)
             distance = float(calculate_distance_between(address1, x))
             if distance < min_distance:
                 min_distance = distance
+                # if package object is NOT needed, we focus on keeping the address 
                 if need_package == False:
                     min_address = x.get_deliver_address()
+                # if package object is needed then we focus on keeping the object
                 else: 
                     min_address = x
 
+    # will return either the string address or object based off the need_package condition
     return min_address
