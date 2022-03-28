@@ -3,7 +3,6 @@
 # C950 - Data Structures and Algorithms II
 
 import csv
-from multiprocessing.connection import deliver_challenge
 from hash_table import hashtable
 from package import Package
 
@@ -11,8 +10,11 @@ from package import Package
 file_name = 'WGUPS Package File.csv'
 packageData = hashtable()
 
+# Nested loops
+# Time Complexity = O(N)^2
 with open(file_name) as data:
     reader = csv.reader(data)
+    # Time Complexity = O(N)
     for row in reader:
         # create a package object everything so it can be reuse as the item for the Hash Table
         info = Package()
@@ -28,5 +30,6 @@ with open(file_name) as data:
         info.add(id, delivery_address, city, state, zip, delivery_deadline, weight, notes, 'at the hub')
 
         # we add the id as the key and the package object as the item for the hash table
+        # Time Complexity = O(N)
         packageData.add(id, info)
     

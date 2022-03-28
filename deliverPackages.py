@@ -47,11 +47,9 @@ for x in truck1.cargo:
     what = x
     what.update_deliver_status('en route')
 
-# now we update the information
-# Time Complexity = O(1)
-#update_global_timekeeper(truck1_time)\
 
 # This function is used to deliver the packages within the truck
+# Time complexity = O(N)^2
 def deliver(truck, time):
     # Using Nearest Neighbor algorithm to find the best opitmal path for the truck
     # we start at the hub as the first address

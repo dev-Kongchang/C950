@@ -10,7 +10,7 @@ class hashtable:
         self.map = [None] * self.size
         
     # Make a function that hash the key for us
-    # Time complexity is O(N)
+    # Time complexity is O(1)
     def get_hash(self, key): 
         hash = int(key)
         hash = hash % len(self.map)

@@ -27,7 +27,7 @@ supertime = ''
 # so we don't see jinky code all over
 # Time complexity = O(1)
 def print_delivered(package):
-    print(Fore.GREEN + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + str(package.get_status()) + ' | delivered at: ' + str(package.get_delivered_time()) + '\n')
+    print(Fore.LIGHTGREEN_EX + '\nFor Package ID: ' + str(package.get_id()) + ' | address: ' + str(package.get_deliver_address()) + '| deadline: ' + str(package.get_deadline()) + ' | city: ' + str(package.get_deliver_city()) + ' | zip: ' + str(package.get_deliver_zip()) + ' | weight: ' + str(package.get_weight()) + ' | status: ' + str(package.get_status()) + ' | delivered at: ' + str(package.get_delivered_time()) + '\n')
 
 # so we don't see jinky code all over
 # Time complexity = O(1)
@@ -59,7 +59,7 @@ def display_delivery(giventruck, num):
         sleep(.1)
 
 # this function will be used to find the package status at a certain,
-# if needed, can only return the status
+# if needed, can only return the status or print 
 # Time complexity = O(N)
 def get_package_status(userinput_time, id, need_status):
     # we first need to know if the package belongs to which truck
@@ -74,14 +74,14 @@ def get_package_status(userinput_time, id, need_status):
                 return status
             else:
                 if status == 'at the hub':
-                        print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
-                        break
+                    print(Fore.RED + ' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                    break
                 if status == 'en route':
-                    print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                    print(Fore.LIGHTYELLOW_EX + ' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                     break
 
                 if status == 'delivered':
-                    print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', delivered at: ' + str(what.get_delivered_time()) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                    print(Fore.LIGHTGREEN_EX + ' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', delivered at: ' + str(what.get_delivered_time()) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                     break
         
         if x < 8:
@@ -93,14 +93,14 @@ def get_package_status(userinput_time, id, need_status):
                     return status
                 else:
                     if status == 'at the hub':
-                        print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                        print(Fore.RED +' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                         break
                     if status == 'en route':
-                        print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                        print(Fore.LIGHTYELLOW_EX + ' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                         break
 
                     if status == 'delivered':
-                        print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', delivered at: ' + str(what.get_delivered_time()) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                        print(Fore.LIGHTGREEN_EX +' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', delivered at: ' + str(what.get_delivered_time()) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                         break
             
 
@@ -112,19 +112,22 @@ def get_package_status(userinput_time, id, need_status):
                 return status
             else:
                 if status == 'at the hub':
-                        print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                        print(Fore.RED +' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                         break
                 if status == 'en route':
-                    print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                    print(Fore.LIGHTYELLOW_EX +' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                     break
 
                 if status == 'delivered':
-                    print(' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', delivered at: ' + str(what.get_delivered_time()) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
+                    print(Fore.LIGHTGREEN_EX +' ' + str(userinput_time) + ': ID: ' +str(what.get_id()) + ', Status: ' + str(status) + ', delivered at: ' + str(what.get_delivered_time()) + ', address: ' + str(what.get_deliver_address()) + ', deadline: ' + str(what.get_deadline()) + ', city: ' + str(what.get_deliver_city()) + ', weight: ' + str(what.get_weight()))
                     break
             
     
 # returns the status depending of the time given and the package delivery condition
-# the logical is that if the given time is less than the package then that means the 
+# the logic is:
+# if the given time is less than the package delivery time but less start time, we know it is at the hub
+# if the given time is after the delivery time and start time, we know the package is delivered
+# if the given time is after the start time but before the delivery time of the packege, then the package was en route
 # Time Complexity = O(1)
 def get_package_status_helper(userinput_time, package, start_time):
     what = Package()
@@ -154,7 +157,7 @@ def get_package_status_helper(userinput_time, package, start_time):
 # restarting the program, making us UI more user-friendly AND ANNOYING
 # Time Complexity = O(1)
 def menu():
-    print(' What do you want to view next?\n')
+    print(Fore.WHITE + ' What do you want to view next?\n')
     userinput = input(' 1.) Check a Package?\n 2.) Quit? \n\n')
     # error-checking for user input
     convert = 0
@@ -163,24 +166,28 @@ def menu():
     except ValueError:
         print(' \n Please enter an valid option...')
         menu()
+    if convert == 2:
+        print(' Thank you! Have a great day!!!')
+        exit(0)
     return convert
 
 
 # Time Complexity = O(1)
 def check_package():
 
-    userinput = input('Please Enter a time (ex: 10:12): ')
+    userinput = input(Fore.WHITE +'Please Enter a time (ex: 10:12): ')
     convertTime = datetime.timedelta()
     try:
         (h, m) = userinput.split(':')
         userinput = datetime.timedelta(hours=int(h), minutes=int(m))
         convertTime = userinput
     except ValueError:
-        print('\n You did not enter an time, Please try again...')
+        print(Fore.WHITE +'\n You did not enter an time, Please try again...')
         check_package()
 
     package_menu(convertTime)
-        
+
+# Time complexity = O(N)
 def package_menu(time):
 
     time_string = str(time)
@@ -190,7 +197,7 @@ def package_menu(time):
     
     supertime = str(time_string)
 
-    print('\n Please choose one of the following options for a Package/Packages:')
+    print(Fore.WHITE +'\n Please choose one of the following options for a Package/Packages:')
     print(' 0.) Check all packages as of time: ' + str(time_string))
     print(' 1.) View Package by ID?')
     print(' 2.) View Package by delivery address?')
@@ -221,6 +228,24 @@ def package_menu(time):
         menu()
 
     if convert == 0:
+        # check for input errors
+        print('Please choose the following time period:\n')
+        what = input('1.) am \n2.) pm\n')
+        try:
+            what = int(what)
+        except ValueError:
+            print('Please choose a valid option ...')
+            package_menu(time)
+        global morning
+
+        if what == 2: 
+            time_string = str(time)
+            (h, m, s) = time_string.split(':')
+            h = int(h) + 12
+            time_string = datetime.timedelta(hours=int(h), minutes=int(m))
+            supertime = str(time_string)
+                
+        # O(N)
         for x in range(1, 41):
             get_package_status(supertime, x, False)
         package_menu(time)
@@ -283,8 +308,6 @@ def view_package_address(time):
     userinput = input(' Please Enter a address: ')
     
     # always using placeholder, so we don't modify the original
-    what = hash_table.hashtable()
-    what = packageData
     package = Package() 
     found = False
 
@@ -349,8 +372,6 @@ def view_package_deadline(time):
 
     if input == 'EOD':
         # always using placeholder, so we don't modify the original
-        what = hash_table.hashtable()
-        what = packageData
         package = Package() 
         found = False
         # Time Complexity = O(N)
@@ -376,8 +397,6 @@ def view_package_city(time):
     userinput = input(' Please Enter a City: ')
     
     # always using placeholder, so we don't modify the original
-    what = hash_table.hashtable()
-    what = packageData
     package = Package() 
     found = False
     # Time Complexity = O(N)
@@ -405,8 +424,6 @@ def view_package_zip(time):
     userinput = input(' Please Enter a zip: ')
     
     # always using placeholder, so we don't modify the original
-    what = hash_table.hashtable()
-    what = packageData
     package = Package() 
     found = False
     # Time Complexity = O(N)
@@ -441,8 +458,6 @@ def view_package_weight(time):
     
     userinput = check
     # always using placeholder, so we don't modify the original
-    what = hash_table.hashtable()
-    what = packageData
     package = Package() 
     found = False
     # Time Complexity = O(N)
@@ -476,9 +491,8 @@ def view_package_status(time):
         print(' You did not choose a valid option....')
         view_package_status(time)
     
+    found = False
     # always using placeholder, so we don't modify the original
-    what = hash_table.hashtable()
-    what = packageData
     package = Package() 
     # Time Complexity = O(N)
     for x in range(1, 41):
@@ -487,15 +501,19 @@ def view_package_status(time):
         status = get_package_status(time, int(package.get_id()), True)
 
         if int(userinput) == 1:
-
             if status == 'delivered':
+                found = True
                 print_delivered(package)
         if int(userinput) == 2:
             if status == 'en route':
+                found = True
                 print_not_delivered(package, status)
         if int(userinput) == 3:
             if status == 'at the hub':
+                found = True
                 print_not_delivered(package, status)
     
+    if found == False:
+        print(' There was no packages found for the following option: ' + str(userinput) + ' for the given time: ' + str(time))
     package_menu(time)
 

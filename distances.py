@@ -39,7 +39,7 @@ for x in range(0, 28):
 def calculate_distance_between(address1, address2):
     # since we have the dictionary for the address, we can simply pull them up quickly rather than loop through the 2D array
 
-    # Time complexity is O(N)
+    # Time complexity is O(1)
     col = addressDictionary.get(address1)
     # just in case we have to check for package object given or string
     if type(address2) == Package:

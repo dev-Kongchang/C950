@@ -99,7 +99,6 @@ class Main:
         userinput = display.menu()
 
         while userinput != 10:
-            if userinput == 2: exit(1)
             if userinput == 1: display.check_package()
 
             userinput = display.check_package()
@@ -107,5 +106,6 @@ class Main:
 
     else:
         print('Thank you for your time and Have a Awesome Day!')
+        exit(0)
     
     
